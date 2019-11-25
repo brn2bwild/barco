@@ -1,7 +1,7 @@
 #define BRAKEVCC 		0
 #define CW				1
 #define CCW				2
-#define BRAKEGND		3
+#define BRAKEGND		4 //3
 #define CS_THRESHOLD	100
 
 int entApin[2] 	= {7, 4};
