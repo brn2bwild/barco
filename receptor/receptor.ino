@@ -12,14 +12,6 @@ RF24 radio(7, 8);
 Servo servo;
 
 const byte address[6] = "10002";
-
-//struct Transmisor{
-//    int direccion;
-//    int velocidad;
-//};
-//
-//Transmisor datos;
-
 int datos[2];
 
 void resetDatos(){
@@ -43,17 +35,13 @@ void setup(){
   radio.startListening();
 }
 
-unsigned long tiempo_ultima_recepcion = 0;
-
 void recibirDatos(){
   if(radio.available()){
     while(radio.available()){
       radio.read(&datos, sizeof(datos));
-      //servo.write(datos[0]);
       servo.writeMicroseconds(datos[0]);
       motorPrincipal(datos[1]);
     }
-        //tiempo_ultima_recepcion = millis();
   }
 }
 
@@ -75,18 +63,4 @@ void motorPrincipal(int _velocidad){
 void loop(){
     delay(5);
     recibirDatos();
-
-//  if(millis() - tiempo_ultima_recepcion > 1000) resetDatos();
-
-//    int angulo = map(datos.direccion, 0, 255, 0, 180);
-//    int velocidad = map(datos.velocidad, 127, 255, 0, 255);
-//    servo.write(90);
-//    delay(1000);
-//    servo.write(180);
-//    delay(1000);
-//    servo.write(0);
-//    delay(1000);
-    Serial.print(datos[0]);
-    Serial.print(", ");
-    Serial.println(datos[1]);
 }
