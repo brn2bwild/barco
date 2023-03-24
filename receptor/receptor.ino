@@ -63,4 +63,7 @@ void motorPrincipal(int _velocidad){
 void loop(){
     delay(5);
     recibirDatos();
+    Serial.print(datos[0]);
+    Serial.print(', ');
+    Serial.println(datos[1]);
 }

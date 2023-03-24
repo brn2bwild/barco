@@ -23,14 +23,20 @@ void setup(){
 }
 
 void loop(){
-    datos[0] = map(analogRead(pinDireccion), 0, 1023, 1000, 2000);
-    datos[1] = map(analogRead(pinVelocidad), 0, 1023, 255, -255);
+    datos[0] = map(analogRead(pinDireccion), 0, 1000, 0, 180);
+    datos[1] = map(analogRead(pinVelocidad), 480, 1000, 0, 180);
+
+//    datos[0] = analogRead(pinDireccion);
+//    datos[1] = analogRead(pinVelocidad);
     
-    if(datos[0] > 1600) datos[0] = 1680;
+    if(datos[0] > 180) datos[0] = 180;
+    if(datos[0] < 0) datos[0] = 0;
+    if(datos[1] > 180) datos[1] = 180;
+    if(datos[1] < 0) datos[1] = 0;
     
-    // Serial.print(datos[0]);
-    // Serial.print(", ");
-    // Serial.println(datos[1]);
+     Serial.print(datos[0]);
+     Serial.print(", ");
+     Serial.println(datos[1]);
 
     radio.write(&datos, sizeof(datos));
     delay(5);
