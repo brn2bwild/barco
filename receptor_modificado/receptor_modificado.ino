@@ -18,8 +18,8 @@ void resetDatos(){
 }
 
 void calibrarSistema(){
-  direccion.writeMicroseconds(90);
-  motor.writeMicroseconds(0);
+  direccion.write(90);
+  motor.write(0);
   delay(5000);
 }
 
